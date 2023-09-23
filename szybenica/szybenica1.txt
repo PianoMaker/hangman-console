@@ -4,7 +4,7 @@
 using namespace std;
 #pragma warning (disable:4996)
 
-void Color(int color) // малюнки будуть кольоровими
+void Color(int color) // РјР°Р»СЋРЅРєРё Р±СѓРґСѓС‚СЊ РєРѕР»СЊРѕСЂРѕРІРёРјРё
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, color);
@@ -17,7 +17,7 @@ void Message(int color, string text)
 	Color(7);
 }
 
-class AbstractVocabulary // тестую два варіанти ініціалізації словника
+class AbstractVocabulary // С‚РµСЃС‚СѓСЋ РґРІР° РІР°СЂС–Р°РЅС‚Рё С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— СЃР»РѕРІРЅРёРєР°
 {
 protected:
 	vector<string> words;
@@ -33,19 +33,19 @@ public:
 	{}
 };
 
-class Vocabulary : public AbstractVocabulary// вбудований словник
+class Vocabulary : public AbstractVocabulary// РІР±СѓРґРѕРІР°РЅРёР№ СЃР»РѕРІРЅРёРє
 {
 private:
 
 public:
 	Vocabulary()
 	{
-		/*список слів*/
-		words = { "програмування", "змінна", "препроцесор", "фукнція", "метод", "клас", "данні"};
-		/* розімр словникової бази */
+		/*СЃРїРёСЃРѕРє СЃР»С–РІ*/
+		words = { "РїСЂРѕРіСЂР°РјСѓРІР°РЅРЅСЏ", "Р·РјС–РЅРЅР°", "РїСЂРµРїСЂРѕС†РµСЃРѕСЂ", "С„СѓРєРЅС†С–СЏ", "РјРµС‚РѕРґ", "РєР»Р°СЃ", "РґР°РЅРЅС–"};
+		/* СЂРѕР·С–РјСЂ СЃР»РѕРІРЅРёРєРѕРІРѕС— Р±Р°Р·Рё */
 		size = words.size();
 
-		/*найдовше слово*/
+		/*РЅР°Р№РґРѕРІС€Рµ СЃР»РѕРІРѕ*/
 		maxwordlength = 0;
 		for (int i = 0; i < words.size(); i++)
 			if (words[i].length() > maxwordlength) maxwordlength = words[i].length();
@@ -65,14 +65,14 @@ public:
 		return maxwordlength;
 	}
 
-	void Show() override // тестова функція - виведення усього словника на екран
+	void Show() override // С‚РµСЃС‚РѕРІР° С„СѓРЅРєС†С–СЏ - РІРёРІРµРґРµРЅРЅСЏ СѓСЃСЊРѕРіРѕ СЃР»РѕРІРЅРёРєР° РЅР° РµРєСЂР°РЅ
 	{
 		for (int i = 0; i < words.size(); i++)
 			cout << words[i] << endl;
 	}
 };
 
-class ExternalVocabulary : public AbstractVocabulary// зовнішній словник 
+class ExternalVocabulary : public AbstractVocabulary// Р·РѕРІРЅС–С€РЅС–Р№ СЃР»РѕРІРЅРёРє 
 {
 private:
 	FILE* in;
@@ -84,11 +84,11 @@ public:
 		try
 		{
 			in = fopen("vocabulary1251.txt", "r");
-			if (!in) throw "Не вдалося завантажити файл словника\n";
+			if (!in) throw "РќРµ РІРґР°Р»РѕСЃСЏ Р·Р°РІР°РЅС‚Р°Р¶РёС‚Рё С„Р°Р№Р» СЃР»РѕРІРЅРёРєР°\n";
 			while (fgets(buff, sizeof(buff), in))
 			{
 				int length = strlen(buff);
-				if (length > 0 && buff[length - 1] == '\n') //боротьба з перенесеннями рядку в файлі
+				if (length > 0 && buff[length - 1] == '\n') //Р±РѕСЂРѕС‚СЊР±Р° Р· РїРµСЂРµРЅРµСЃРµРЅРЅСЏРјРё СЂСЏРґРєСѓ РІ С„Р°Р№Р»С–
 				{
 					buff[length - 1] = '\0';
 				}
@@ -101,7 +101,7 @@ public:
 				}
 			}
 			size = words.size();
-			/*найдовше слово*/
+			/*РЅР°Р№РґРѕРІС€Рµ СЃР»РѕРІРѕ*/
 			maxwordlength = 0;
 			for (int i = 0; i < words.size(); i++)
 				if (words[i].length() > maxwordlength) maxwordlength = words[i].length();
@@ -125,7 +125,7 @@ public:
 	{
 		return maxwordlength;
 	}
-	void Show() override // тестова
+	void Show() override // С‚РµСЃС‚РѕРІР°
 	{
 		for (int i = 0; i < size; i++)
 		{
@@ -135,7 +135,7 @@ public:
 };
 
 
-class WordLength // Налаштування довжини слова
+class WordLength // РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РґРѕРІР¶РёРЅРё СЃР»РѕРІР°
 {
 private:
 	int length;
@@ -144,11 +144,11 @@ public:
 	WordLength(int max)
 	{
 		int temp;
-		cout << "Введіть мінімальну довжину слова. Максимальне значення: " << max << endl;
+		cout << "Р’РІРµРґС–С‚СЊ РјС–РЅС–РјР°Р»СЊРЅСѓ РґРѕРІР¶РёРЅСѓ СЃР»РѕРІР°. РњР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРЅСЏ: " << max << endl;
 		do
 		{
 			cin >> temp;
-			if (temp > max)  cout << "Значення не може перевищувати максимальне значення. Спробуйте ще раз.\n";
+			if (temp > max)  cout << "Р—РЅР°С‡РµРЅРЅСЏ РЅРµ РјРѕР¶Рµ РїРµСЂРµРІРёС‰СѓРІР°С‚Рё РјР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРЅСЏ. РЎРїСЂРѕР±СѓР№С‚Рµ С‰Рµ СЂР°Р·.\n";
 		} while (temp > max);
 		length = temp;
 	}
@@ -159,7 +159,7 @@ public:
 	}
 };
 
-class AttemptsNumber // налаштування кількості спроб
+class AttemptsNumber // РЅР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РєС–Р»СЊРєРѕСЃС‚С– СЃРїСЂРѕР±
 {
 private:
 	int attempts;
@@ -169,13 +169,13 @@ public:
 	{
 		int tempvalue;
 		string temp;
-		cout << "Виберіть режим: 1 - 6 спроб, 2 - 8 спроб" << endl;
+		cout << "Р’РёР±РµСЂС–С‚СЊ СЂРµР¶РёРј: 1 - 6 СЃРїСЂРѕР±, 2 - 8 СЃРїСЂРѕР±" << endl;
 		do
 		{
 			cin >> temp;
 			if (temp == "1") tempvalue = 6;
 			else if (temp == "2") tempvalue = 8;
-			else cout << "Спробуйте ще раз. Виберіть 1 або 2\n";
+			else cout << "РЎРїСЂРѕР±СѓР№С‚Рµ С‰Рµ СЂР°Р·. Р’РёР±РµСЂС–С‚СЊ 1 Р°Р±Рѕ 2\n";
 		} while (temp != "1" && temp != "2");
 		attempts = tempvalue;
 	}
@@ -194,25 +194,25 @@ public:
 	{
 		bool temp;
 		string choice;
-		cout << "Оберіть словник: 1 - вбудований, 2 - зовнішній" << endl;
+		cout << "РћР±РµСЂС–С‚СЊ СЃР»РѕРІРЅРёРє: 1 - РІР±СѓРґРѕРІР°РЅРёР№, 2 - Р·РѕРІРЅС–С€РЅС–Р№" << endl;
 		do
 		{
 			cin >> choice;
 			if (choice == "1") temp = false;
 			else if (choice == "2") temp = true;
-			else cout << "Спробуйте ще раз. Виберіть 1 або 2\n";
+			else cout << "РЎРїСЂРѕР±СѓР№С‚Рµ С‰Рµ СЂР°Р·. Р’РёР±РµСЂС–С‚СЊ 1 Р°Р±Рѕ 2\n";
 		} while (choice != "1" && choice != "2");
 		choosevocabulary = temp;
 	}
 	bool GetNumber()
 	{
-		if (choosevocabulary) cout << "обрано вбудований словник\n";
-		else cout << "обрано зовнішній словник\n";
+		if (choosevocabulary) cout << "РѕР±СЂР°РЅРѕ РІР±СѓРґРѕРІР°РЅРёР№ СЃР»РѕРІРЅРёРє\n";
+		else cout << "РѕР±СЂР°РЅРѕ Р·РѕРІРЅС–С€РЅС–Р№ СЃР»РѕРІРЅРёРє\n";
 		return choosevocabulary;
 	}
 };
 
-class Mode // Налаштування гри
+class Mode // РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РіСЂРё
 {
 private:
 	WordLength* wordlength;
@@ -238,7 +238,7 @@ public:
 };
 
 
-class Choice // генерація випадкових чисел 
+class Choice // РіРµРЅРµСЂР°С†С–СЏ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР» 
 {
 private:
 	int choice;
@@ -250,7 +250,7 @@ public:
 	}
 };
 
-class Word // слово зі словника
+class Word // СЃР»РѕРІРѕ Р·С– СЃР»РѕРІРЅРёРєР°
 {
 private:
 	string word;
@@ -306,7 +306,7 @@ public:
 	void SetLetter()
 	{
 		char temp;
-		Message(11, "Введіть літеру\n");
+		Message(11, "Р’РІРµРґС–С‚СЊ Р»С–С‚РµСЂСѓ\n");
 		cin >> temp;
 		letter = temp;
 	}
@@ -432,12 +432,12 @@ private:
 	Figure* figure;
 	Letter letter;
 	Mode* mode;
-	int length; //довжина слова
-	bool* ifopen;// перевірка чи відкрито літеру
-	int attempts; // невдалі спроби
+	int length; //РґРѕРІР¶РёРЅР° СЃР»РѕРІР°
+	bool* ifopen;// РїРµСЂРµРІС–СЂРєР° С‡Рё РІС–РґРєСЂРёС‚Рѕ Р»С–С‚РµСЂСѓ
+	int attempts; // РЅРµРІРґР°Р»С– СЃРїСЂРѕР±Рё
 	char* falseletters = nullptr;
-	bool victory;// сигнал до завершення гри (перемога)
-	bool failure;// сигнал до завершення гри (поразка)
+	bool victory;// СЃРёРіРЅР°Р» РґРѕ Р·Р°РІРµСЂС€РµРЅРЅСЏ РіСЂРё (РїРµСЂРµРјРѕРіР°)
+	bool failure;// СЃРёРіРЅР°Р» РґРѕ Р·Р°РІРµСЂС€РµРЅРЅСЏ РіСЂРё (РїРѕСЂР°Р·РєР°)
 
 
 public:
@@ -446,7 +446,7 @@ public:
 		length = word->GetLength();
 		ifopen = new bool[length];
 		for (int i = 0; i < length; i++)
-			ifopen[i] = false; // від початку усі літери закриті
+			ifopen[i] = false; // РІС–Рґ РїРѕС‡Р°С‚РєСѓ СѓСЃС– Р»С–С‚РµСЂРё Р·Р°РєСЂРёС‚С–
 		attempts = 0;
 		
 		victory = false;
@@ -475,7 +475,7 @@ public:
 		failure = obj.failure;
 	}
 
-	bool IfFinish() // якщо спроби вичерпано
+	bool IfFinish() // СЏРєС‰Рѕ СЃРїСЂРѕР±Рё РІРёС‡РµСЂРїР°РЅРѕ
 	{
 		if (attempts == mode->GetNumber())
 		{
@@ -489,7 +489,7 @@ public:
 		victory = true; return true;
 	}
 
-	void OpenLetter() // відкриваємо літери
+	void OpenLetter() // РІС–РґРєСЂРёРІР°С”РјРѕ Р»С–С‚РµСЂРё
 	{
 		bool success = false;
 		letter.SetLetter();
@@ -501,21 +501,21 @@ public:
 		if (!success) AddFalseLetter(letter);
 		Show();
 
-		if (!IfFinish()) OpenLetter(); // якщо спроби вичерпано
+		if (!IfFinish()) OpenLetter(); // СЏРєС‰Рѕ СЃРїСЂРѕР±Рё РІРёС‡РµСЂРїР°РЅРѕ
 		else if (victory)
 		{
-			Message(10, "Ви вгадали!\n");
+			Message(10, "Р’Рё РІРіР°РґР°Р»Рё!\n");
 
 		}
 		else if (failure)
 		{
-			Message(12, "Не вгадали!\n");
+			Message(12, "РќРµ РІРіР°РґР°Р»Рё!\n");
 
 			word->Show();
 		}
 	}
 
-	void AddFalseLetter(Letter letter) // список відстуніх літер 
+	void AddFalseLetter(Letter letter) // СЃРїРёСЃРѕРє РІС–РґСЃС‚СѓРЅС–С… Р»С–С‚РµСЂ 
 	{
 		char* temp = new char[attempts + 1]; 
 		for (int i = 0; i < attempts; i++)
@@ -528,17 +528,17 @@ public:
 		attempts++;
 	}
 
-	void Show() // на екрані - слово, помилкові літери і малюночок
+	void Show() // РЅР° РµРєСЂР°РЅС– - СЃР»РѕРІРѕ, РїРѕРјРёР»РєРѕРІС– Р»С–С‚РµСЂРё С– РјР°Р»СЋРЅРѕС‡РѕРє
 	{
 		system("cls");
 		cout << endl;
-		Message(11, "Слово: ");
+		Message(11, "РЎР»РѕРІРѕ: ");
 		Color(15);
 		for (int i = 0; i < length; i++)
 			if (!ifopen[i]) cout << "_ ";
 			else cout << word->GetWord()[i] << " ";
 		cout << endl;
-		Message(11, "Помилки: ");
+		Message(11, "РџРѕРјРёР»РєРё: ");
 		Color(12);
 		for (int i = 0; i < attempts; i++)
 		{
@@ -565,7 +565,7 @@ public:
 
 };
 
-class Timer // час витрачено
+class Timer // С‡Р°СЃ РІРёС‚СЂР°С‡РµРЅРѕ
 {
 private:
 	int start;
@@ -575,11 +575,11 @@ public:
 	void TimeSpent()
 	{
 		end = clock();
-		cout << "\nВитрачено " << float(end - start) / 1000 << " секунд";
+		cout << "\nР’РёС‚СЂР°С‡РµРЅРѕ " << float(end - start) / 1000 << " СЃРµРєСѓРЅРґ";
 	}
 };
 
-class Music // по завершенню гри грає музика.
+class Music // РїРѕ Р·Р°РІРµСЂС€РµРЅРЅСЋ РіСЂРё РіСЂР°С” РјСѓР·РёРєР°.
 {
 private:
 	WordTable* wordtable;
@@ -616,30 +616,30 @@ int main()
 	SetConsoleCP(1251);
 	srand(time(NULL));
 
-	/*Словник*/
+	/*РЎР»РѕРІРЅРёРє*/
 	try {
 	
 	Choosevocabulary choosevocabulary;
 	AbstractVocabulary* vocabulary = createVocabulary(choosevocabulary.GetNumber());
 
 
-	//vocabulary->Show(); system("pause"); //Тест: виводимо на екран слово, загадане комп'ютером, під час гри ця функція має бути вимкнена
+	//vocabulary->Show(); system("pause"); //РўРµСЃС‚: РІРёРІРѕРґРёРјРѕ РЅР° РµРєСЂР°РЅ СЃР»РѕРІРѕ, Р·Р°РіР°РґР°РЅРµ РєРѕРјРї'СЋС‚РµСЂРѕРј, РїС–Рґ С‡Р°СЃ РіСЂРё С†СЏ С„СѓРЅРєС†С–СЏ РјР°С” Р±СѓС‚Рё РІРёРјРєРЅРµРЅР°
 
 
-	/* Встановлюмо налаштування */
+	/* Р’СЃС‚Р°РЅРѕРІР»СЋРјРѕ РЅР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ */
 	WordLength wordlength(vocabulary->GetMaxWordLength());
 	AttemptsNumber attemptsnumber;
 	
 	Mode gamemode(&wordlength, &attemptsnumber, &choosevocabulary);
 
-	/* Комп'ютер загадує слово */
+	/* РљРѕРјРї'СЋС‚РµСЂ Р·Р°РіР°РґСѓС” СЃР»РѕРІРѕ */
 	Choice choice(vocabulary);
 	Word word(choice, gamemode.GetLength(), vocabulary);
 	Figure figure(gamemode.GetNumber());
 	WordTable wordtable(&word, &figure, &gamemode);
 
 
-	/* Гра */
+	/* Р“СЂР° */
 
 	wordtable.Show();
 	Timer timer;
